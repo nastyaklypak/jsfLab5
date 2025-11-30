@@ -10,7 +10,10 @@ dotenv.config();
 const app = express();
 
 // CORS
-const allowedOrigins = process.env.CLIENT_ORIGINS.split(",");
+const allowedOrigins = process.env.CLIENT_ORIGINS
+  ? process.env.CLIENT_ORIGINS.split(",")
+  : ["http://localhost:3000"];
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
